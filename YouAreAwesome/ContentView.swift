@@ -13,16 +13,15 @@ struct ContentView: View {
             Image(systemName: "swift")
                 .resizable()
                 .scaledToFit()
-                .imageScale(.large)
                 .foregroundStyle(.mint)
-                .padding(.horizontal)
+                .padding(.horizontal, 30.0)
+                .padding(.bottom, 100.0)
             Text("You Are Awesome!")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
                 .foregroundStyle(.indigo)
                 .italic()
         }
-        .padding()
     }
 }
 
