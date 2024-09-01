@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var messageString = ""
+    @State private var messageString = "When the Genius Bar needs help, they call you!"
     var body: some View {
+        VStack {
+            
+        }
         VStack {
             Image(systemName: "swift")
                 .resizable()
@@ -20,10 +23,13 @@ struct ContentView: View {
             Text(messageString)
                 .font(.largeTitle)
                 .fontWeight(.heavy)
+                .minimumScaleFactor(0.5)
+                .multilineTextAlignment(.center)
                 .foregroundStyle(.indigo)
-                .italic()
+                .frame(height: 150)
+                .frame(maxWidth: .infinity)
+                .border(.orange, width: 1)
                 .padding()
-            
             HStack {
                 Button("Awesome") {
                     // This is the action preformed when the button is pressed
@@ -36,6 +42,7 @@ struct ContentView: View {
                 }
                 .buttonStyle(.borderedProminent)
             }
+            .border(.purple, width: 3)
         }
     }
 }
