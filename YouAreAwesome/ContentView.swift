@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var messageString = ""
     @State private var imageName = ""
+    @State private var imageNumber = 0
+    @State private var messageNumber = 0
     var body: some View {
         
         //            Rectangle()
@@ -75,13 +77,24 @@ struct ContentView: View {
                 
                 HStack {
                     Button("Show Message") {
-                        let message1 = "You Are Awesome!"
-                        let message2 = "You Are Great!"
-                        let image0 = "image0"
-                        let image1 = "image1"
                         // This is the action preformed when the button is pressed
-                        messageString = (messageString == message1 ? message2 : message1)
-                        imageName = (messageString == message1 ? image1 : image0)
+                        var messages = ["You Are Awesome!",
+                                        "You Are Great!",
+                                        "Keep Up The Good Work!",
+                                        "Fabulous? That's You!",
+                                        "People Wish They Could Be You!"]
+                        
+                        messageString = messages[messageNumber]
+                        messageNumber += 1
+                        if messageNumber > messages.count - 1{
+                            messageNumber = 0
+                        }
+                        imageName = "image\(imageNumber)"
+                        imageNumber += 1
+                        if imageNumber > 2 {
+                            imageNumber = 0
+                        }
+                        
                     }
                     .buttonStyle(.borderedProminent)
                     
