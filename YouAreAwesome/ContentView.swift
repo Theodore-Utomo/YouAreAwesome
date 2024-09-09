@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var messageString = "Namaste"
+    @State private var messageString = ""
+    @State private var imageName = ""
     var body: some View {
         
         //            Rectangle()
@@ -47,36 +48,21 @@ struct ContentView: View {
         
         GeometryReader {geometry in
             VStack {
-                //                Text("You have Skills!")
-                //                    .font(.largeTitle)
-                //                    .fontWeight(.black)
-                //                    .foregroundStyle(Color("Gold-BC"))
-                //                    .padding()
-                //                    .background(Color("Maroon-BC"))
-                //                    .cornerRadius(15)
-                
                 Spacer()
                 
-                Image(systemName: "speaker.wave.3", variableValue: 0.68)
+                Image(imageName)
                     .resizable()
                     .scaledToFit()
-                    .symbolRenderingMode(.multicolor)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    .shadow(color: .gray, radius: 50)
                     .padding()
-                    .background(Color(hue: 0.502, saturation: 0.289, brightness: 0.966))
-                    .cornerRadius(30)
-                    .shadow(color: .gray, radius: 8)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(.teal, lineWidth: 2)
-                    )
-                    .padding()
-                                   
+                
                 Text(messageString)
                     .font(.largeTitle)
                     .fontWeight(.heavy)
                     .minimumScaleFactor(0.5)
                     .multilineTextAlignment(.center)
-                    .foregroundStyle(.pink)
+                    .foregroundStyle(.maroonBC)
                     .frame(height: 150)
                     .frame(maxWidth: .infinity)
                     .padding(.bottom)
@@ -85,21 +71,20 @@ struct ContentView: View {
                 
                 Rectangle()
                     .fill(.maroonBC)
-                    .frame(width: geometry.size.width * (2/3), height: 1)
+                    .frame(width: geometry.size.width * (3/4), height: 1)
                 
                 HStack {
-                    Button("Awesome") {
+                    Button("Show Message") {
+                        let message1 = "You Are Awesome!"
+                        let message2 = "You Are Great!"
+                        let image0 = "image0"
+                        let image1 = "image1"
                         // This is the action preformed when the button is pressed
-                        messageString = "You Are Awesome!"
+                        messageString = (messageString == message1 ? message2 : message1)
+                        imageName = (messageString == message1 ? image1 : image0)
                     }
                     .buttonStyle(.borderedProminent)
                     
-                    Spacer()
-                    
-                    Button("Great") {
-                        messageString = "You Are Great!"
-                    }
-                    .buttonStyle(.borderedProminent)
                 }
                 .padding()
                 .foregroundStyle(Color("Gold-BC"))
