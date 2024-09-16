@@ -33,6 +33,7 @@ struct ContentView: View {
                     .frame(height: 150)
                     .frame(maxWidth: .infinity)
                     .padding(.bottom)
+                    .animation(.easeInOut(duration: 0.15), value: messageString)
                 
                 Image(imageName)
                     .resizable()
@@ -40,6 +41,7 @@ struct ContentView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     .shadow(color: .gray, radius: 50)
                     .padding()
+                    .animation(.easeInOut(duration: 0.15), value: messageString)
                 
                 
                 
@@ -59,7 +61,7 @@ struct ContentView: View {
                             }
 
                         }
-                    
+
                     Spacer()
                     
                     Button("Show Message") {
@@ -91,7 +93,7 @@ struct ContentView: View {
                 .padding()
                 .foregroundStyle(Color("Gold-BC"))
                 .fontWeight(.heavy)
-                .tint(Color("Maroon-BC"))
+                .tint(.accentColor)
             }
         }
         
