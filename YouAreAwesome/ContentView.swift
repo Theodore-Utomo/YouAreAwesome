@@ -15,41 +15,10 @@ struct ContentView: View {
     @State private var lastMessageNumber = -1
     @State private var lastSoundNumber = -1
     @State private var audioPlayer: AVAudioPlayer!
+    @State private var soundIsOn = true
     
     var body: some View {
         
-        //            Rectangle()
-        //                .fill(
-        //                    Gradient(colors: [.maroonBC, .skyBlue])
-        //                )
-        //                .ignoresSafeArea()
-        
-        //            Rectangle()
-        //                .fill(
-        //                    LinearGradient(
-        //                        colors: [.red, .indigo],
-        //                        startPoint: .topLeading,
-        //                        endPoint: .bottomTrailing
-        //                    )
-        //                )
-        
-        //            Rectangle()
-        //                .fill(
-        //                    RadialGradient(
-        //                        colors: [.red, .white, .blue],
-        //                        center: .center,
-        //                        startRadius: 50,
-        //                        endRadius: 100
-        //                    )
-        //                )
-        
-        //            Rectangle()
-        //                .fill(
-        //                    AngularGradient(
-        //                        colors: [.red, .orange, .yellow, .green, .blue, .indigo, .purple],
-        //                        center: .center
-        //                    )
-        //                )
         
         
         GeometryReader {geometry in
@@ -81,6 +50,18 @@ struct ContentView: View {
                     .frame(width: geometry.size.width * (3/4), height: 1)
                 
                 HStack {
+                    Text("Sound On: ")
+                    Toggle("", isOn: $soundIsOn)
+                        .labelsHidden()
+                        .onChange(of: soundIsOn) {
+                            if audioPlayer != nil && audioPlayer.isPlaying {
+                                audioPlayer.stop()
+                            }
+
+                        }
+                    
+                    Spacer()
+                    
                     Button("Show Message") {
                         // This is the action preformed when the button is pressed
                         let messages = ["You Are Awesome!",
@@ -99,8 +80,9 @@ struct ContentView: View {
                         lastSoundNumber = nonRepeatingRandom(numOfMembers: 5, lastNumber: lastSoundNumber)
                         soundName = "sound\(lastSoundNumber)"
                         
-
-                        playSound(soundName: soundName)
+                        if soundIsOn {
+                            playSound(soundName: soundName)
+                        }
                         
                     }
                     .buttonStyle(.borderedProminent)
